@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>तमन्ना, मुझे माफ़ कर दो</title>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Kalam:wght@400;700&family=Hind:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one long scroll; a rani-pink silk night, a blush letter with a gold zari border at its centre. */
+  :root{
+    --night:#24061c; --silk:#5c0d3f; --rani:#e0218a; --blush:#ffd6e8; --paper:#fff3f8;
+    --ink:#4a0f2e; --gold:#e8b04a; --text:#fff1f7;
+    --display:'Yatra One','Hind',serif; --hand:'Kalam','Hind',cursive; --body:'Hind',system-ui,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);font-size:16px;color:var(--text);background:radial-gradient(ellipse at top,var(--silk),var(--night) 70%);background-color:var(--night);overflow-x:hidden;min-height:100vh}
+  #three{position:fixed;top:0;left:0;width:100vw;height:100vh;display:block;z-index:0}
+  main{position:relative;z-index:2}
+  section{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-block:72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  #intro{min-height:88vh}
+  .eyebrow{letter-spacing:3px;font-size:.95rem;color:var(--gold);text-shadow:0 2px 10px var(--night)}
+  h1{font-family:var(--display);font-weight:400;font-size:clamp(4.2rem,20vw,9rem);line-height:1.15;background:linear-gradient(90deg,var(--blush),var(--gold),var(--rani),var(--blush));background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite;filter:drop-shadow(0 0 28px rgba(224,33,138,.55))}
+  @keyframes shine{to{background-position:300%}}
+  h2{font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,8vw,3.4rem);color:var(--blush);margin-bottom:20px;text-wrap:balance;text-shadow:0 0 24px rgba(224,33,138,.6)}
+  .sub{font-size:clamp(1.05rem,3.6vw,1.3rem);font-weight:300;max-width:560px;margin-top:10px;line-height:1.7;text-shadow:0 2px 12px var(--night)}
+  .btn{margin-top:30px;padding:14px 34px;border:1px solid rgba(232,176,74,.6);border-radius:50px;font:600 1.1rem var(--body);color:#fff;cursor:pointer;background:linear-gradient(135deg,var(--rani),#a3125f);box-shadow:0 10px 40px rgba(224,33,138,.45);transition:transform .25s}
+  .btn:hover{transform:translateY(-3px) scale(1.04)}
+  .btn:focus-visible,#music:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+  .pulse{animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 10px 60px rgba(224,33,138,.9)}}
+  .hint{margin-top:34px;opacity:.65;font-size:.95rem;animation:bob 2s infinite}
+  @keyframes bob{50%{transform:translateY(8px)}}
+
+  /* the letter: blush paper, gold zari border */
+  .letter{position:relative;max-width:660px;width:100%;padding:52px 34px 40px;border-radius:6px;background:linear-gradient(170deg,var(--paper),var(--blush));color:var(--ink);text-align:left;font-family:var(--hand);font-size:1.22rem;line-height:1.95;border:3px solid var(--gold);box-shadow:0 0 0 6px var(--silk),0 0 0 8px var(--gold),0 40px 90px rgba(0,0,0,.55);transition:transform .2s}
+  .letter::before,.letter::after{content:"";position:absolute;left:14px;right:14px;height:10px;background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 14px,var(--rani) 14px 18px,transparent 18px 24px);opacity:.75}
+  .letter::before{top:14px}.letter::after{bottom:14px}
+  .letter p{margin-bottom:16px}
+  .letter .greet{font-size:1.45rem;font-weight:700;color:var(--rani)}
+  .letter .sign{text-align:right;font-size:1.5rem;color:var(--rani);font-weight:700;margin-top:8px}
+  .letter.show p{animation:rise .9s ease-out backwards}
+  .letter.show p:nth-child(2){animation-delay:.2s}.letter.show p:nth-child(3){animation-delay:.4s}.letter.show p:nth-child(4){animation-delay:.6s}.letter.show p:nth-child(5){animation-delay:.8s}.letter.show p:nth-child(6){animation-delay:1s}.letter.show p:nth-child(7){animation-delay:1.2s}.letter.show p:nth-child(8){animation-delay:1.4s}
+  @keyframes rise{from{opacity:.25;transform:translateY(12px)}}
+
+  /* pink saree card */
+  .saree{max-width:620px;width:100%;margin-top:56px;padding:34px 26px;border-radius:18px;position:relative;overflow:hidden;background:linear-gradient(120deg,#ff4fa3,var(--rani) 40%,#b5126a 70%,#ff7fbf);box-shadow:0 30px 70px rgba(0,0,0,.45);border-bottom:12px solid var(--gold)}
+  .saree::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 48%,transparent 66%);background-size:250% 100%;animation:sheen 4.5s ease-in-out infinite}
+  @keyframes sheen{from{background-position:120% 0}to{background-position:-120% 0}}
+  .saree p{position:relative;z-index:1;font-family:var(--hand);font-size:1.3rem;line-height:1.8;color:#fff}
+  .saree .label{font-family:var(--body);font-size:.9rem;letter-spacing:2px;color:var(--paper);opacity:.9;margin-bottom:8px}
+
+  /* promises */
+  .promises{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:820px;width:100%;margin-top:8px}
+  .promises li{padding:22px 20px;border-radius:14px;background:rgba(255,214,232,.08);border:1px solid rgba(232,176,74,.4);text-align:left;font-size:1.08rem;line-height:1.7;min-width:0}
+  .promises b{display:block;color:var(--gold);font-family:var(--display);font-weight:400;font-size:1.3rem;margin-bottom:4px}
+
+  /* forgive */
+  .ask{position:relative;min-height:240px;width:100%;max-width:600px}
+  #noBtn{background:linear-gradient(135deg,#7a6170,#4a3542);position:relative;transition:all .3s}
+  #final{display:none}
+  #final h2{font-size:clamp(2.8rem,11vw,5rem)}
+  #lastLine{display:none;font-family:var(--hand);font-size:1.5rem;margin-top:26px}
+  .burst{position:fixed;pointer-events:none;z-index:50;font-size:1.6rem;animation:burst 2.2s ease-out forwards}
+  @keyframes burst{to{transform:translate(var(--x),var(--y)) scale(.3) rotate(var(--r));opacity:0}}
+
+  #music{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));right:calc(18px + env(safe-area-inset-right,0px));z-index:20;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,176,74,.5);background:rgba(36,6,28,.6);color:#fff;font-size:1.4rem;cursor:pointer}
+  @media(max-width:600px){.letter{padding:46px 20px 34px;font-size:1.12rem}}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    h1,.pulse,.hint,.saree::after,.letter.show p{animation:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="three"></canvas>
+<button id="music" title="संगीत" aria-label="संगीत चालू या बंद करो">🎵</button>
+
+<main>
+  <section id="intro">
+    <p class="eyebrow">सिर्फ़ तुम्हारे लिए</p>
+    <h1>तमन्ना</h1>
+    <p class="sub">एक चिट्ठी, जो कल रात ही लिख देनी चाहिए थी। 💗</p>
+    <button class="btn pulse" onclick="go('chitthi')">चिट्ठी पढ़ो 💌</button>
+    <div class="hint">↓ धीरे से नीचे चलो ↓</div>
+  </section>
+
+  <section id="chitthi">
+    <h2>मुझे माफ़ कर दो, मेरी जान</h2>
+    <div class="letter" id="letterBox">
+      <p class="greet">मेरी प्यारी तमन्ना,</p>
+      <p>कल रात तुम रो रही थीं, और मेरी हँसी निकल गई। उस पल से बड़ी गलती मुझसे शायद ही कभी हुई हो। तुम्हें दुख पहुँचाने का इरादा कभी नहीं था, पर तुम्हारे आँसुओं के सामने हँसी बिल्कुल गलत थी। इसके लिए दिल से माफ़ी।</p>
+      <p>सच बस इतना था कि मुझे तुमसे थोड़ा और वक़्त चाहिए था, ताकि हम और बातें कर सकें और हमारा रिश्ता और मज़बूत हो। पर तुम थकी हुई थीं, तुम्हें सोना था, और मेरी ज़िद चलती रही। उस वक़्त मुझे तुम्हारी नींद और तुम्हारा मन समझना चाहिए था।</p>
+      <p>फिर शाम को तुम्हारा फ़ोन आया। तुमने बताया कि तुम्हें डर लग रहा है, कि कल रात वाली बात अब भी तुम्हें परेशान कर रही है। इतना सब होने के बाद भी तुमने मेरी फ़िक्र की। और बात के आख़िर में फिर से गरमा-गरमी हो गई। इस पर मैं सच में शर्मिंदा हूँ।</p>
+      <p>तुम्हारा हर आँसू मेरे लिए बहुत कीमती है। उन पर हँसी नहीं, सिर्फ़ मेरा कंधा होना चाहिए था। अब से जब भी तुम रोओगी, पहले गले लगाना, फिर चुपचाप सुनना, और तब तक साथ रहना जब तक तुम फिर से मुस्कुरा न दो। यह मेरा वादा है।</p>
+      <p>तुम मेरी ताक़त हो, मेरा सुकून हो। एक छोटी-सी गलती की वजह से तुम्हारा दिल दुखे, यह मुझसे बर्दाश्त नहीं होता।</p>
+      <p>मुझे तुमसे बेहद प्यार है, तमन्ना। बस एक बार माफ़ कर दो।</p>
+      <p class="sign">सिर्फ़ तुम्हारे लिए 💗</p>
+    </div>
+
+    <div class="saree">
+      <p class="label">गुलाबी साड़ी वाली</p>
+      <p>और हाँ… उस गुलाबी साड़ी में तुम इतनी खूबसूरत और इतनी graceful लग रही थीं कि नज़र हटाना मुश्किल था। जैसे गुलाब की सबसे नाज़ुक पंखुड़ी ने साड़ी पहन ली हो। 🌸</p>
+    </div>
+  </section>
+
+  <section id="vaade">
+    <h2>मेरे वादे</h2>
+    <ul class="promises">
+      <li><b>आँसुओं पर</b>कभी हँसी नहीं। सिर्फ़ गले लगाना और तुम्हें सुनना।</li>
+      <li><b>तुम्हारी नींद</b>तुम्हारी नींद तुम्हारी है। रात को कोई ज़िद नहीं।</li>
+      <li><b>गुस्से में</b>पहले तुम्हारी बात सुनना, फिर अपनी कहना।</li>
+      <li><b>हर दिन</b>याद दिलाना कि तुम मेरे लिए कितनी ख़ास हो।</li>
+    </ul>
+  </section>
+
+  <section id="maafi">
+    <div id="askWrap">
+      <h2>क्या तुम मुझे माफ़ करोगी?</h2>
+      <p class="sub">गोलगप्पे, टिक्की और जलेबी मेरी तरफ़ से। और पूरे दिन तुम्हारी फ़ोटो खींचने की ड्यूटी भी। 🥺👉👈</p>
+      <div class="ask" id="ask">
+        <button class="btn" id="yesBtn" onclick="yes()">हाँ, माफ़ किया 💗</button>
+        <button class="btn" id="noBtn">नहीं 😤</button>
+      </div>
+    </div>
+    <div id="final">
+      <h2>शुक्रिया, जान</h2>
+      <p class="sub">अब बस एक बात कह दो… पूरे दिन से सुनने का इंतज़ार है।</p>
+      <button class="btn pulse" onclick="iloveyou()">आई लव यू 💗</button>
+      <p id="lastLine">मुझे भी तुमसे बेहद प्यार है। आज, कल और हमेशा। 💞</p>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ---------- 3D background: falling rose petals, rising hearts, gold dust ---------- */
+(function(){
+  if(!window.THREE) return;
+  const canvas=document.getElementById('three');
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  scene.fog=new THREE.Fog(0x24061c,24,70);
+  const camera=new THREE.PerspectiveCamera(55,1,.1,100);
+  camera.position.z=22;
+  const calm=matchMedia('(prefers-reduced-motion: reduce)').matches?.3:1;
+
+  scene.add(new THREE.AmbientLight(0xffc0d8,.65));
+  const l1=new THREE.PointLight(0xe0218a,2.2,80);l1.position.set(10,10,15);scene.add(l1);
+  const l2=new THREE.PointLight(0xe8b04a,1.5,80);l2.position.set(-12,-8,10);scene.add(l2);
+
+  const s=new THREE.Shape();
+  s.moveTo(0,.5);s.bezierCurveTo(0,.8,-.5,1.2,-1,1.2);s.bezierCurveTo(-1.8,1.2,-1.8,.3,-1.8,.3);
+  s.bezierCurveTo(-1.8,-.4,-1,-1.1,0,-1.8);s.bezierCurveTo(1,-1.1,1.8,-.4,1.8,.3);
+  s.bezierCurveTo(1.8,.3,1.8,1.2,1,1.2);s.bezierCurveTo(.5,1.2,0,.8,0,.5);
+  const heartGeo=new THREE.ExtrudeGeometry(s,{depth:.6,bevelEnabled:true,bevelSegments:6,bevelSize:.25,bevelThickness:.25,curveSegments:24});
+  heartGeo.center();
+
+  const p=new THREE.Shape();
+  p.moveTo(0,0);p.bezierCurveTo(.6,.35,.55,1.1,0,1.5);p.bezierCurveTo(-.55,1.1,-.6,.35,0,0);
+  const petalGeo=new THREE.ShapeGeometry(p,14);
+  // curl the petal a little so it catches light like silk
+  const pos=petalGeo.attributes.position;
+  for(let i=0;i<pos.count;i++){const x=pos.getX(i),y=pos.getY(i);pos.setZ(i,x*x*.5+y*.12)}
+  petalGeo.computeVertexNormals();
+
+  const hearts=[],petals=[];
+  const heartCols=[0xe0218a,0xff6fb3,0xff9fcb,0xe8b04a];
+  for(let i=0;i<18;i++){
+    const c=heartCols[i%heartCols.length];
+    const h=new THREE.Mesh(heartGeo,new THREE.MeshPhysicalMaterial({color:c,metalness:.3,roughness:.25,clearcoat:1,emissive:c,emissiveIntensity:.12}));
+    h.scale.setScalar(.35+Math.random()*.8);
+    h.position.set((Math.random()-.5)*44,(Math.random()-.5)*34,-4-Math.random()*22);
+    h.rotation.set(0,Math.random()*6,(Math.random()-.5)*.6);
+    h.userData={sp:(.004+Math.random()*.01)*calm,rs:(Math.random()-.5)*.02*calm,ph:Math.random()*6};
+    scene.add(h);hearts.push(h);
+  }
+  const petalCols=[0xff4fa3,0xe0218a,0xffb3d4,0xc2185b];
+  for(let i=0;i<70;i++){
+    const m=new THREE.Mesh(petalGeo,new THREE.MeshStandardMaterial({color:petalCols[i%petalCols.length],roughness:.45,metalness:.1,side:THREE.DoubleSide,emissive:0x5c0d3f,emissiveIntensity:.25}));
+    m.scale.setScalar(.35+Math.random()*.45);
+    m.position.set((Math.random()-.5)*46,(Math.random()-.5)*36,-2-Math.random()*24);
+    m.rotation.set(Math.random()*6,Math.random()*6,Math.random()*6);
+    m.userData={sp:(.012+Math.random()*.02)*calm,rx:(Math.random()-.5)*.03*calm,rz:(Math.random()-.5)*.03*calm,ph:Math.random()*6};
+    scene.add(m);petals.push(m);
+  }
+  const big=new THREE.Mesh(heartGeo,new THREE.MeshPhysicalMaterial({color:0xe0218a,metalness:.45,roughness:.15,clearcoat:1,emissive:0x7a0040,emissiveIntensity:.35}));
+  big.scale.setScalar(2.3);big.position.set(0,0,-7);scene.add(big);
+
+  const dg=new THREE.BufferGeometry(),N=700,dp=new Float32Array(N*3);
+  for(let i=0;i<N*3;i++)dp[i]=(Math.random()-.5)*70;
+  dg.setAttribute('position',new THREE.BufferAttribute(dp,3));
+  const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0xf3c66b,size:.1,transparent:true,opacity:.8}));
+  scene.add(dust);
+
+  let mx=0,my=0,sy=0;
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  addEventListener('scroll',()=>sy=window.scrollY);
+  function resize(){
+    renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;
+    camera.position.z=camera.aspect<1?34:22; // narrow screens: pull back so shapes don't fill the view
+    camera.updateProjectionMatrix();
+  }
+  addEventListener('resize',resize);resize();
+
+  const clock=new THREE.Clock();
+  (function loop(){
+    const t=clock.getElapsedTime();
+    hearts.forEach(h=>{
+      h.position.y+=h.userData.sp;h.rotation.y+=h.userData.rs+.004*calm;
+      h.position.x+=Math.sin(t+h.userData.ph)*.004*calm;
+      if(h.position.y>19){h.position.y=-19;h.position.x=(Math.random()-.5)*44}
+    });
+    petals.forEach(m=>{
+      m.position.y-=m.userData.sp;m.rotation.x+=m.userData.rx;m.rotation.z+=m.userData.rz;
+      m.position.x+=Math.sin(t*.8+m.userData.ph)*.012*calm;
+      if(m.position.y<-19){m.position.y=19;m.position.x=(Math.random()-.5)*46}
+    });
+    big.scale.setScalar(2.3*(1+Math.max(0,Math.sin(t*3))**8*.12*calm));
+    big.rotation.y=Math.sin(t*.6)*.5+mx*.8;big.position.y=-sy*.004;
+    dust.rotation.y=t*.01;
+    camera.position.x+=(mx*4-camera.position.x)*.04;
+    camera.position.y+=(-my*3-camera.position.y)*.04;
+    camera.lookAt(0,0,-4);
+    renderer.render(scene,camera);
+    requestAnimationFrame(loop);
+  })();
+})();
+
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+const lb=document.getElementById('letterBox');
+new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('show')),{threshold:.15}).observe(lb);
+lb.addEventListener('pointermove',e=>{const r=lb.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;lb.style.transform=`perspective(1000px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`});
+lb.addEventListener('pointerleave',()=>lb.style.transform='');
+
+/* ---------- forgive ---------- */
+const noBtn=document.getElementById('noBtn');
+const noText=['नहीं 😤','पक्का? 🥺','प्लीज़… 🥹','एक बार और सोचो 💗','गोलगप्पे मेरी तरफ़ से 🥟','जलेबी भी! 🍥','ना नहीं चलेगा 😌'];
+let noI=0;
+function dodge(e){
+  e&&e.preventDefault();
+  noI=Math.min(noI+1,noText.length-1);noBtn.textContent=noText[noI];
+  const box=document.getElementById('ask').getBoundingClientRect();
+  noBtn.style.position='absolute';noBtn.style.margin='0';
+  // keep it below the Yes button and fully inside the box
+  noBtn.style.left=Math.random()*Math.max(0,box.width-noBtn.offsetWidth)+'px';
+  noBtn.style.top=100+Math.random()*Math.max(0,box.height-100-noBtn.offsetHeight)+'px';
+  document.getElementById('yesBtn').style.transform=`scale(${1+noI*.12})`;
+}
+noBtn.addEventListener('pointerenter',dodge);noBtn.addEventListener('pointerdown',dodge);
+function yes(){
+  document.getElementById('askWrap').style.display='none';
+  document.getElementById('final').style.display='block';
+  for(let i=0;i<5;i++)setTimeout(()=>burst(Math.random()*innerWidth,Math.random()*innerHeight*.7,25),i*300);
+}
+function iloveyou(){
+  document.getElementById('lastLine').style.display='block';
+  for(let i=0;i<8;i++)setTimeout(()=>burst(Math.random()*innerWidth,Math.random()*innerHeight,30),i*250);
+}
+function burst(x,y,n){
+  const set=['💗','🌸','💖','✨','🌹','💞'];
+  for(let i=0;i<n;i++){
+    const h=document.createElement('div');h.className='burst';h.textContent=set[i%set.length];
+    h.style.left=x+'px';h.style.top=y+'px';
+    const a=Math.random()*Math.PI*2,d=120+Math.random()*260;
+    h.style.setProperty('--x',Math.cos(a)*d+'px');h.style.setProperty('--y',Math.sin(a)*d+'px');h.style.setProperty('--r',(Math.random()*720-360)+'deg');
+    document.body.appendChild(h);setTimeout(()=>h.remove(),2200);
+  }
+}
+addEventListener('click',e=>{if(!e.target.closest('button'))burst(e.clientX,e.clientY,6)});
+
+/* ---------- soft music box (WebAudio, starts from the button) ---------- */
+let ac,playing=false,musicTimer;
+const melody=[523,587,659,784,659,587,523,440,523,587,659,659,587,523,587,523];
+document.getElementById('music').onclick=function(){
+  if(playing){clearInterval(musicTimer);playing=false;this.textContent='🎵';return}
+  ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+  let i=0;playing=true;this.textContent='⏸';
+  musicTimer=setInterval(()=>{
+    const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=melody[i++%melody.length];
+    g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.12,ac.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+1);
+    o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+1.1);
+  },480);
+};
+</script>
+</body>
+</html>
